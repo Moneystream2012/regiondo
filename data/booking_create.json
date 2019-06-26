@@ -1,0 +1,15 @@
+[
+  {
+    "first_name": "Denys",
+    "last_name": "Bulakh",
+    "company": "Regiondo",
+    "booked_from": "2019-05-12 12:00:43",
+    "booked_to": "2019-05-12 12:11:29"
+  },
+  {
+    "first_name": "Andrii",
+    "last_name": "Tarasenko",
+    "booked_from": "2019-06-06 00:26:43",
+    "booked_to": "2019-06-06 14:19:29"
+  }
+]
