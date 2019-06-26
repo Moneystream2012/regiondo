@@ -1,8 +1,32 @@
 # Regiondo test task
 
+## Installation
+
+* Step 1 - Clone this repo to desired location
+* Step 2 - Change directory to newly cloned repo via CLI `cd /new/cloned/location`
+* Step 3 - Run docker-compose `docker-compose up -d`
+* Step 4 - copy/rename the following config files
+    * /config/autoload/development.local.php.dist >>> development.local.php
+    * /config/autoload/doctrine.local.php.dist >>> doctrine.local.php
+    * /config/autoload/local.php.dist >>> local.php
+    * /config/development.config.php.dist >>> development.config.php
+* Step 5 (optional) - Use docker-compose to clean up the example application `docker-compose down`
+
+## Usage
+
+At this point the REST API should work. (The following REST endpoints return a listing from the DB.)
+
+* http://localhost:8080/booking [GET, POST]
+* http://localhost:8080/bookings [GET] - BONUS TASK - paginated output
+
+Each of these can be called as an HTTP GET, or an HTTP POST with Json fields payload. (See example body content in docblocks of Create and Update Handlers. Sample Json data for requests can be found in [/data](/data).)
+
+In addition to these endpoints the hypermedia in each response provides information to additional endpoints.
+
+
 [![CircleCI](https://circleci.com/gh/Beachcasts/doctrine-expressive-example.svg?style=svg)](https://circleci.com/gh/Beachcasts/doctrine-expressive-example)
 
-# doctrine-expressive-example
+# BASED ON: doctrine-expressive-example
 Example PHP REST API application spread across 2 Docker containers. (1=Apache, 2=MySQL) I used [Zend Expressive](https://docs.zendframework.com/zend-expressive/) with [Doctrine ORM](https://www.doctrine-project.org/projects/orm.html) in an effort to help document usage of both in a typical scenario. The application leveraged the [zend-expressive-skeleton](https://github.com/zendframework/zend-expressive-skeleton) as a starting point, and was installed set up for Modules using [FastRoute](https://github.com/nikic/FastRoute), [zend-servicemanager](https://github.com/zendframework/zend-servicemanager), and no template engine (since it is a REST API responding with Json).
 
 The Doctrine Entities also include example usage of [Associations](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/reference/association-mapping.html#association-mapping) between Entities (see the OneToMany association in [Bank](/src/Banks/src/Entity/Bank.php) using ArrayCollection to ManyToOne association in [Branch](/src/Branches/src/Entity/Branch.php)) as well as parent-child relationships within the same Entity (See the Bank associations - ManyToOne $parent and OneToMany $children using ArrayCollection).
@@ -26,30 +50,6 @@ The Doctrine Entities also include example usage of [Associations](https://www.d
     * Associations represented in data output (see View Handlers)
     * CLI config
 * PHP v7.2 feature usage    
-
-## Installation
-
-* Step 1 - Clone this repo to desired location
-* Step 2 - Change directory to newly cloned repo via CLI `cd /new/cloned/location`
-* Step 3 - Run docker-compose `docker-compose up -d`
-* Step 4 - copy/rename the following config files
-    * /config/autoload/development.local.php.dist >>> development.local.php
-    * /config/autoload/doctrine.local.php.dist >>> doctrine.local.php
-    * /config/autoload/local.php.dist >>> local.php
-    * /config/development.config.php.dist >>> development.config.php
-* Step 5 (optional) - Use docker-compose to clean up the example application `docker-compose down`
-
-## Usage
-
-At this point the REST API should work. (The following REST endpoints return a listing from the DB.)
-
-* http://localhost:8080/announcements
-* http://localhost:8080/banks
-* http://localhost:8080/branches
-
-Each of these can be called as an HTTP GET, or an HTTP POST with Json fields payload. (See example body content in docblocks of Create and Update Handlers. Sample Json data for requests can be found in [/data](/data).)
-
-In addition to these endpoints the hypermedia in each response provides information to additional endpoints.
 
 ## CLI Tools
 Also, the Zend Expressive, Doctrine DBAL, and Doctrine CLI commands are available by gaining the terminal from Docker.
